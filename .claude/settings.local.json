@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bruin run:*)",
+      "Bash(duckdb warehouse.db ':*)",
+      "Bash(bruin query:*)",
+      "Bash(python3 -c ':*)",
+      "Bash(py -3 -c ':*)",
+      "Read(//usr/**)",
+      "Read(//c/Users/mehme/AppData/Local/Programs/**)",
+      "Bash(/c/Users/mehme/AppData/Roaming/uv/python/cpython-3.11-windows-x86_64-none/python.exe -c ':*)",
+      "Bash(bruin --help)",
+      "Bash(bruin ai:*)",
+      "Bash(bruin connections:*)",
+      "Read(//c/Users/mehme/.bruin/**)",
+      "Read(//c/Users/mehme/**)"
+    ]
+  }
+}
