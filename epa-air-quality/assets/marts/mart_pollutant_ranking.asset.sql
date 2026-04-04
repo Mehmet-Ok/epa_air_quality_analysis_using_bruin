@@ -1,7 +1,7 @@
 /* @bruin
 
 name: marts.mart_pollutant_ranking
-type: duckdb.sql
+type: motherduck.sql
 description: |
   Comprehensive air quality ranking analysis that ranks EPA monitoring sites by pollutant concentration levels both nationally and within each state for the five major criteria pollutants (PM2.5, Ozone, CO, NO2, SO2) from 2019-2023.
 

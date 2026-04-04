@@ -1,7 +1,7 @@
 /* @bruin
 
 name: marts.mart_site_timeseries
-type: duckdb.sql
+type: motherduck.sql
 description: |
   Site-level annual time series for all EPA monitoring sites, enabling trend analysis
   and year-over-year comparisons at the individual site level (2019–2023).
