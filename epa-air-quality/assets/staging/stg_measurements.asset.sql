@@ -1,7 +1,8 @@
 /* @bruin
 
 name: staging.stg_measurements
-type: motherduck.sql
+type: duckdb.sql
+connection: motherduck-default
 description: |
   Staging layer for EPA Air Quality System (AQS) annual concentration measurements, covering 2019-2023 data for five major criteria pollutants regulated under the Clean Air Act.
 

@@ -1,7 +1,8 @@
 /* @bruin
 
 name: marts.mart_best_worst_states
-type: motherduck.sql
+type: duckdb.sql
+connection: motherduck-default
 description: |
   Pre-aggregated best/worst state labels per pollutant for KPI cards and overview tables.
   Each row is a state+pollutant with 2019 and 2023 averages, 5-year % change, and a

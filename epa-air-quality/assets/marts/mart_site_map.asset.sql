@@ -1,7 +1,8 @@
 /* @bruin
 
 name: marts.mart_site_map
-type: motherduck.sql
+type: duckdb.sql
+connection: motherduck-default
 description: |
   Geographic mart that joins pollutant rankings with monitoring site coordinates
   for map visualizations. Returns the top-ranked sites per pollutant and year

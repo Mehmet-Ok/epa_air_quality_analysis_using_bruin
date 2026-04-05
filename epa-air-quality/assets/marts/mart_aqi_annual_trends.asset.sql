@@ -1,7 +1,8 @@
 /* @bruin
 
 name: marts.mart_aqi_annual_trends
-type: motherduck.sql
+type: duckdb.sql
+connection: motherduck-default
 description: |
   National-level annual air quality trends summary for the five major EPA criteria pollutants (PM2.5, Ozone, CO, NO2, SO2) from 2019-2023.
 

@@ -1,7 +1,8 @@
 /* @bruin
 
 name: core.fct_measurements
-type: motherduck.sql
+type: duckdb.sql
+connection: motherduck-default
 description: |
   Central fact table containing aggregated EPA Air Quality System (AQS) measurements for the five major criteria pollutants monitored across the United States from 2019-2023.
 

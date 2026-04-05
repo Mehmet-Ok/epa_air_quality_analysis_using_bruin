@@ -1,7 +1,8 @@
 /* @bruin
 
 name: marts.mart_state_comparison
-type: motherduck.sql
+type: duckdb.sql
+connection: motherduck-default
 description: |
   State-level air quality analysis table comparing each US state's pollution performance against national averages for EPA criteria pollutants (2019-2023).
 

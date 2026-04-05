@@ -1,7 +1,8 @@
 /* @bruin
 
 name: core.dim_site
-type: motherduck.sql
+type: duckdb.sql
+connection: motherduck-default
 description: |
   EPA Air Quality System (AQS) monitoring site dimension table containing unique geographic and administrative metadata for air quality monitoring stations across the United States (2019-2023 period).
 
