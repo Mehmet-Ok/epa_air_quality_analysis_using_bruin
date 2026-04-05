@@ -6,10 +6,21 @@ type: python
 
 import io
 import os
+import time
 import zipfile
 
 import pandas as pd
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+
+def make_session():
+    session = requests.Session()
+    retry = Retry(total=5, backoff_factor=2, status_forcelist=[500, 502, 503, 504])
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("https://", adapter)
+    return session
 
 YEARS = [2019, 2020, 2021, 2022, 2023]
 OUTPUT_DIR = "epa-air-quality/data"
@@ -36,6 +47,7 @@ COLUMNS_KEEP = [
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+session = make_session()
 frames = []
 
 for year in YEARS:
@@ -47,8 +59,16 @@ for year in YEARS:
         df = pd.read_csv(dest_csv, low_memory=False)
     else:
         print(f"[{year}] Downloading {url} ...")
-        resp = requests.get(url, timeout=120)
-        resp.raise_for_status()
+        for attempt in range(1, 4):
+            try:
+                resp = session.get(url, timeout=180)
+                resp.raise_for_status()
+                break
+            except Exception as e:
+                print(f"[{year}] Attempt {attempt} failed: {e}")
+                if attempt == 3:
+                    raise
+                time.sleep(10 * attempt)
 
         with zipfile.ZipFile(io.BytesIO(resp.content)) as zf:
             csv_name = next(n for n in zf.namelist() if n.endswith(".csv"))
