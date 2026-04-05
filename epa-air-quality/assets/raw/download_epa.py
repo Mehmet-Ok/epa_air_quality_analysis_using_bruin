@@ -89,8 +89,20 @@ combined = pd.concat(frames, ignore_index=True)
 print(f"Combined dataset: {len(combined):,} rows")
 
 # Write directly to MotherDuck
-token = os.environ["BRUIN_MOTHERDUCK_DEFAULT_TOKEN"]
-con = duckdb.connect(f"md:epa_air_quality?motherduck_token={token}")
+token = os.environ.get("MOTHERDUCK_TOKEN")
+if not token:
+    # Fall back to reading from .bruin.yml (local dev)
+    import yaml
+    bruin_yml = os.path.join(os.path.dirname(__file__), "..", "..", "..", ".bruin.yml")
+    if os.path.exists(bruin_yml):
+        with open(bruin_yml) as f:
+            config = yaml.safe_load(f)
+        conns = config.get("environments", {}).get("default", {}).get("connections", {}).get("motherduck", [])
+        if conns:
+            token = conns[0].get("token")
+if not token:
+    raise KeyError("MotherDuck token not found. Set MOTHERDUCK_TOKEN env var or configure .bruin.yml")
+con = duckdb.connect(f"md:epa-air-quality?motherduck_token={token}")
 con.execute("CREATE SCHEMA IF NOT EXISTS raw")
 con.execute("DROP TABLE IF EXISTS raw.epa_combined")
 con.execute("CREATE TABLE raw.epa_combined AS SELECT * FROM combined")

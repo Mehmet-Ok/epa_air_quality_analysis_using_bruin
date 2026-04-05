@@ -4,3 +4,5 @@ logs/*.log
 __pycache__/
 *.py[cod]
 logs/queries
+epa-air-quality/data/
+*.db
