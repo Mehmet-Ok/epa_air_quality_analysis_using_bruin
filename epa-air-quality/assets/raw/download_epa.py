@@ -9,6 +9,7 @@ import os
 import time
 import zipfile
 
+import duckdb
 import pandas as pd
 import requests
 from requests.adapters import HTTPAdapter
@@ -21,6 +22,7 @@ def make_session():
     adapter = HTTPAdapter(max_retries=retry)
     session.mount("https://", adapter)
     return session
+
 
 YEARS = [2019, 2020, 2021, 2022, 2023]
 OUTPUT_DIR = "epa-air-quality/data"
@@ -78,16 +80,19 @@ for year in YEARS:
         df.to_csv(dest_csv, index=False)
         print(f"[{year}] Saved {len(df):,} rows to {dest_csv}")
 
-    # Filter to target pollutants only
     df = df[df["Parameter Name"].isin(TARGET_POLLUTANTS)]
-
-    # Keep only needed columns (intersect with what actually exists)
     existing_cols = [c for c in COLUMNS_KEEP if c in df.columns]
     df = df[existing_cols]
-
     frames.append(df)
 
 combined = pd.concat(frames, ignore_index=True)
-combined_path = os.path.join(OUTPUT_DIR, "epa_combined.csv")
-combined.to_csv(combined_path, index=False)
-print(f"Combined dataset: {len(combined):,} rows -> {combined_path}")
+print(f"Combined dataset: {len(combined):,} rows")
+
+# Write directly to MotherDuck
+token = os.environ["BRUIN_MOTHERDUCK_DEFAULT_TOKEN"]
+con = duckdb.connect(f"md:epa_air_quality?motherduck_token={token}")
+con.execute("CREATE SCHEMA IF NOT EXISTS raw")
+con.execute("DROP TABLE IF EXISTS raw.epa_combined")
+con.execute("CREATE TABLE raw.epa_combined AS SELECT * FROM combined")
+print(f"Written {len(combined):,} rows to MotherDuck raw.epa_combined")
+con.close()

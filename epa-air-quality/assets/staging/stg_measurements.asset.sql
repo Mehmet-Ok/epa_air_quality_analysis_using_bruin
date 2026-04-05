@@ -155,7 +155,7 @@ SELECT
     CAST("Year" AS INTEGER)                                                AS year,
     CAST("POC" AS INTEGER)                                                 AS poc
 
-FROM read_csv_auto('epa-air-quality/data/epa_combined.csv', header=true, ignore_errors=true)
+FROM raw.epa_combined
 
 WHERE
     "Arithmetic Mean" IS NOT NULL
