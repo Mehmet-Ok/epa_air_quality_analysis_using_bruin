@@ -89,6 +89,8 @@ combined = pd.concat(frames, ignore_index=True)
 print(f"Combined dataset: {len(combined):,} rows")
 
 # Write directly to MotherDuck
+print("ALL ENV VARS:", sorted(os.environ.keys()))
+
 token = os.environ.get("MOTHERDUCK_TOKEN")
 if not token:
     # Fall back to reading from .bruin.yml (local dev)
