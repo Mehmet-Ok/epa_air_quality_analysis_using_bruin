@@ -4,5 +4,5 @@ environments:
         connections:
             motherduck:
                 - name: MOTHERDUCK_TOKEN
-                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1laG1ldC5vazFAb2dyLnNha2FyeWEuZWR1LnRyIiwibWRSZWdpb24iOiJhd3MtZXUtY2VudHJhbC0xIiwic2Vzc2lvbiI6Im1laG1ldC5vazEub2dyLnNha2FyeWEuZWR1LnRyIiwicGF0IjoiY0xNRVpoaDFZd3phdm5UbTJXc2V5T0pROGhjcEg2bUtwU3pQR1VqdDFwdyIsInVzZXJJZCI6ImM4OThiZGNjLTAwYjYtNDQyNi04MjQyLWJhNGRmMTNkMWZkZiIsImlzcyI6Im1kX3BhdCIsInJlYWRPbmx5IjpmYWxzZSwidG9rZW5UeXBlIjoicmVhZF93cml0ZSIsImlhdCI6MTc3NTM4NDcyNX0.3U4YBHHKAPoSz0MmgMEKgSMRfo-vfl_20KyREi6eV30
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1laG1ldC5vazFAb2dyLnNha2FyeWEuZWR1LnRyIiwibWRSZWdpb24iOiJhd3MtZXUtY2VudHJhbC0xIiwic2Vzc2lvbiI6Im1laG1ldC5vazEub2dyLnNha2FyeWEuZWR1LnRyIiwicGF0IjoiNDk1RExvamtZZEZ1dmVzYXlVTFByaDhFelZpLXpEeTAzOEFYYWRsLUdpQSIsInVzZXJJZCI6ImM4OThiZGNjLTAwYjYtNDQyNi04MjQyLWJhNGRmMTNkMWZkZiIsImlzcyI6Im1kX3BhdCIsInJlYWRPbmx5IjpmYWxzZSwidG9rZW5UeXBlIjoicmVhZF93cml0ZSIsImlhdCI6MTc3NTkxNTc0MX0.fZ9uQxAKH1_dzx2DxHlPgyEQ5fmOntlavmL4FQVGQVE
                   database: epa-air-quality
