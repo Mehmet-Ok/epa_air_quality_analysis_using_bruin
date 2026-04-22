@@ -1,0 +1,105 @@
+domains:
+  air-quality:
+    description: Air quality monitoring data from the EPA AQS system, covering criteria pollutants across US monitoring sites.
+    owners:
+      - "Mehmet OK"
+    tags:
+      - epa
+      - environment
+      - air-quality
+    contact:
+      - type: "email"
+        address: "mehmetok863@gmail.com"
+
+  geography:
+    description: Geographic and spatial data related to monitoring site locations across the United States.
+    owners:
+      - "Mehmet OK"
+    tags:
+      - geography
+      - location
+
+entities:
+  MonitoringSite:
+    description: |
+      A physical location operated by a state or local agency where instruments measure
+      air pollutant concentrations. Each site is uniquely identified by a composite site ID
+      derived from state, county, and site codes.
+    domains:
+      - air-quality
+      - geography
+    attributes:
+      SiteID:
+        type: string
+        description: Unique composite identifier for a monitoring site (state_county_site format).
+      Latitude:
+        type: float
+        description: Geographic latitude coordinate of the monitoring site.
+      Longitude:
+        type: float
+        description: Geographic longitude coordinate of the monitoring site.
+      StateName:
+        type: string
+        description: US state where the monitoring site is located.
+      CountyName:
+        type: string
+        description: County where the monitoring site is located.
+
+  Measurement:
+    description: |
+      An annual air quality measurement recorded at a monitoring site for a specific pollutant.
+      Values represent the arithmetic mean of all valid observations over the calendar year,
+      averaged across multiple instruments (POCs) at the same site.
+    domains:
+      - air-quality
+    attributes:
+      AnnualMean:
+        type: float
+        description: Arithmetic mean of pollutant concentration measurements over a full calendar year.
+      Pollutant:
+        type: string
+        description: Name of the criteria pollutant measured (PM2.5, Ozone, CO, NO2, SO2).
+      Year:
+        type: integer
+        description: Calendar year of the measurement (2019-2023).
+      POC:
+        type: integer
+        description: Parameter Occurrence Code — distinguishes multiple instruments measuring the same pollutant at the same site.
+
+  Pollutant:
+    description: |
+      One of the five EPA criteria pollutants tracked in this project, regulated under the Clean Air Act.
+      Each pollutant has established NAAQS (National Ambient Air Quality Standards) thresholds.
+    domains:
+      - air-quality
+    attributes:
+      Name:
+        type: string
+        description: Common name of the pollutant (e.g. PM2.5, Ozone, CO, NO2, SO2).
+      Unit:
+        type: string
+        description: Unit of measurement for the pollutant concentration (e.g. ug/m3 for PM2.5, ppm for gases).
+
+  StateAirQuality:
+    description: |
+      Aggregated air quality statistics at the US state level for a given pollutant and year.
+      Used for state-level rankings and comparisons against national averages.
+    domains:
+      - air-quality
+      - geography
+    attributes:
+      StateName:
+        type: string
+        description: Name of the US state.
+      AvgConcentration:
+        type: float
+        description: Average pollutant concentration across all monitoring sites in the state for the year.
+      StateRank:
+        type: integer
+        description: State ranking by pollutant concentration — rank 1 indicates the most polluted state.
+      NationalDeviation:
+        type: float
+        description: Difference between the state average concentration and the national average for the same pollutant and year.
+      YoYChange:
+        type: float
+        description: Year-over-year percentage change in average pollutant concentration for the state.
