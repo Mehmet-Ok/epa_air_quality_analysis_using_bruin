@@ -54,6 +54,13 @@ into a local DuckDB warehouse, with 4 modeling layers.
 │  per pollutant   │  │  avg, state rank      │  │  national + state  │
 │  YoY % change    │  │  pct above/below avg  │  │  per pollutant+yr  │
 └──────────────────┘  └───────────────────────┘  └────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│  MARTS LAYER                                                           │
+│  mart_pm25_geo_summary                                                 │
+│  • Dashboard-ready PM2.5 state and county summaries                    │
+│  • Geography-year averages, site counts, and rankings                  │
+└─────────────────────────────────────────────────────────────────────────┘
 ```
 
 ## Project Structure
@@ -77,6 +84,7 @@ epa-air-quality/
     │   └── fct_measurements.asset.sql
     └── marts/
         ├── mart_aqi_annual_trends.asset.sql
+        ├── mart_pm25_geo_summary.asset.sql
         ├── mart_pollutant_ranking.asset.sql
         └── mart_state_comparison.asset.sql
 ```
