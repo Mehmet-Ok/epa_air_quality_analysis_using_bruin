@@ -103,7 +103,10 @@ if not token:
             config = yaml.safe_load(f)
         conns = config.get("environments", {}).get("default", {}).get("connections", {}).get("motherduck", [])
         if conns:
-            token = conns[0].get("token")
+            configured_token = conns[0].get("token", "")
+            expanded_token = os.path.expandvars(configured_token)
+            if expanded_token and expanded_token != configured_token:
+                token = expanded_token
 if not token:
     raise KeyError("MotherDuck token not found. Set MOTHERDUCK_TOKEN env var or configure .bruin.yml")
 con = duckdb.connect(f"md:epa-air-quality?motherduck_token={token}")
