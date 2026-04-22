@@ -3,6 +3,6 @@ environments:
     default:
         connections:
             motherduck:
-                - name: "duckdb-default"
-                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1laG1ldC5vazFAb2dyLnNha2FyeWEuZWR1LnRyIiwibWRSZWdpb24iOiJhd3MtZXUtY2VudHJhbC0xIiwic2Vzc2lvbiI6Im1laG1ldC5vazEub2dyLnNha2FyeWEuZWR1LnRyIiwicGF0IjoiN3R0WlplTXBOZ0lPcEdzSHh2YjlDT3Z3cGJYYkVlWXlZRDlveHBrUmdDcyIsInVzZXJJZCI6ImM4OThiZGNjLTAwYjYtNDQyNi04MjQyLWJhNGRmMTNkMWZkZiIsImlzcyI6Im1kX3BhdCIsInJlYWRPbmx5IjpmYWxzZSwidG9rZW5UeXBlIjoicmVhZF93cml0ZSIsImlhdCI6MTc3Njg4Nzg4Mn0.ACYE0H4LX0cccXQrwuHwW3xMa_Rtuz12wpozwEvi2W0
+                - name: "motherduck-default"
+                  token: ${MOTHERDUCK_TOKEN}
                   database: "epa-air-quality"

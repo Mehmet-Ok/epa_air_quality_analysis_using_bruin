@@ -124,14 +124,15 @@ bruin run epa-air-quality/assets/raw/download_epa.py
 bruin run epa-air-quality/ --downstream staging.stg_measurements
 ```
 
-## DuckDB Connection
+## MotherDuck Connection
 
 Configured in the root `.bruin.yml`:
 ```yaml
 connections:
-  duckdb:
-    - name: duckdb-default
-      path: duckdb.db
+  motherduck:
+    - name: motherduck-default
+      token: ${MOTHERDUCK_TOKEN}
+      database: epa-air-quality
 ```
 
-The warehouse file lives at `./warehouse.db` relative to where you run Bruin.
+Use `motherduck-default` consistently for pipeline runs and Bruin AI surfaces such as chats, agents, and dashboards.
